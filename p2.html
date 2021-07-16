@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./p1.css">
+    <title>bora market</title>
+
+    <title></title>
+</head>
+
+<body>
+    <header>
+        <span class="topLogo">장바구니</span>
+        <nav>
+            <a href="#" class="menuA" target="_self"><i class="fas fa-plus-square"></i></i></a>
+            <a href="#" class="menuA" target="_self"><i class="far fa-heart"></i></a>
+            <a href="#" class="menuA" target="_self"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#" class="menuA" target="_self"><i class="far fa-copy"></i></a>
+        </nav>
+    </header>
+
+    <section class="productArea">
+        <article class="imgBox">
+            <img src="" id="productImg" alt="product image">
+            <ul class="circleBox">
+                <a><i class="far fa-circle" id="cirOne"></i></a>
+                <a><i class="far fa-circle" id="cirTwo"></i></a>
+                <a><i class="far fa-circle" id="cirThr"></i></a>
+            </ul>
+        </article>
+        <article class="pdOption">
+            <h3>루쥬 코코</h3>
+            <p id="pdPrice">45,000<span>원</span></p>
+            <ul>
+                <button id="pdSelect">선택<i class="fas fa-angle-down"></i></button>
+                <a>
+                    <li id="firstSelect">480 - 코랄 비브란트</li>
+                </a>
+                <a>
+                    <li id="secondSelect">486 - 아미</li>
+                </a>
+            </ul>
+        </article>
+        <article class="pdCount">
+            <a><i id="countMinusBtn" class="fas fa-minus-circle"></i></a>
+            <input type="text" id="productCount" value="1">
+            <a><i id="countPlusBtn" class="fas fa-plus-circle"></i></a>
+        </article>
+        <article class="pdTotal">
+            <div>
+                <p class="chongP">총&nbsp;</p>
+                <p id="totalPrice"><span>원</span></p>
+            </div>
+            <span>
+                <button>장바구니</button>
+                <button>구매하기</button>
+            </span>
+        </article>
+
+        <script>
+            class PdMake {
+
+                constructor(rname, name1, price1, name2, price2) {
+                    this.rname = name;
+                    this.name1 = name1;
+                    this.name2 = name2;
+                    this.pdImg1 = [];
+                    //제품 이미지를 담을 배열
+                    this.pdImg2 = [];
+                    //동그라미 버튼을 누르면 이미지 바뀌게 할 때 쓰는 버튼 아이디를 모은 배열
+                    this.imgCircle = ["cirOne", "cirTwo", "cirThr"];
+                    //가격 원데이터
+                    this.price1 = price1;
+                    this.commaPrice = price1;
+                    this.name2 = name2;
+                    this.price2 = price2;
+                    this.settingFlag = 0;
+                    this.imgFlag = 0;
+                    this.clickFlag = 0;
+                    this.circleFlag = 0;
+                }
+
+                inputPDName(){
+                    $("firstSelect").html(this.name1);
+                    $("secondSelect").html(this.name2);
+                }
+
+                pdPriceSetting() {
+                    $('#pdPrice').html(this.commaPrice + '<span>원</span>');
+                }
+
+                firstSettingPrice() {
+                    $("#totalPrice").text(this.commaPrice + '원');
+                }
+
+                //000 , 정규식
+                commaSetting() {
+                    if(this.settingFlag == 0){
+                        this.commaPrice = String(this.commaPrice).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.settingFlag = 1;
+                    }else{
+                        this.commaPrice = String(this.price2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        this.settingFlag = 0;
+
+                    }
+
+                }
+
+                listClickEvent() {
+                    let clickPrice ='';
+                    if(this.clickFlag==0){
+                         clickPrice = this.price1;
+                         this.clickFlag =1;
+                    }else{
+                         clickPrice = this.price2;
+                         this.clickFlag=0;
+                    }
+                    let tmpPrice;
+                    let i = 1;
+                    //제품 수량 증가 감소 버튼 클릭 이벤트
+                    $("a").on("click", function () {
+
+                        switch (event.target.id) {
+                            case "countPlusBtn": //플러스 버튼
+                                $("#productCount").val(++i);
+                                tmpPrice = String(i * clickPrice).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                $("#totalPrice").text(tmpPrice + '원');
+                                break
+                            case "countMinusBtn": //마이너스 버튼 1 이하로 내려가지 않게 함.
+                                --i;
+                                if (i <= 1) {
+                                    i = 1;
+                                }
+                                $("#productCount").val(i);
+                                $("#totalPrice").text(i * clickPrice + '원');
+                                break
+                        }
+                    });
+
+                }
+
+                //제품 옵션에서 선택한 항목이 제일 위칸에 적용되게 한다.
+                selectTop() {
+                    $(".pdOption li").on("click", () => {
+                        $("#pdSelect i").removeClass();
+                        $("#pdSelect i").addClass("fas fa-angle-up")
+                        const rightArrow = '<i id="selectDown" class="fas fa-angle-down">';
+                        switch (event.currentTarget.id) {
+                            case 'firstSelect':
+                                $("#pdSelect").html($("#firstSelect").html() + rightArrow);
+                                break
+                            case 'secondSelect':
+                                $("#pdSelect").html($("#secondSelect").html() + rightArrow);
+                                break
+                        }
+                    })
+                }
+                //제품 이미지 배열 생성
+                imgMake(name1, name2) {
+                    //해당 제품의 이미지를 제품이미지파일배열에 넣어주는 반복문
+                    let j = 0;
+                    while (j < 3) {
+                        let tmpImg1 = "img/" + this.name1 + j + ".jpg";
+                        let tmpImg2 = "img/" + this.name2 + j + ".jpg";
+                        this.pdImg1.push(tmpImg1);
+                        this.pdImg2.push(tmpImg2);
+                        //this.pdImg[i] = tmpImg;
+                        j++;
+                    }
+                    if(this.imgFlag == 0){
+                        $("#productImg").attr("src", this.pdImg1[0]);
+                        this.imgFlag = 1;
+                    }else{
+                        $("#productImg").attr("src", this.pdImg2[0]);
+                        this.imgFlag = 0;
+                    }
+
+                }
+                //제품 이미지 하단 버튼 메소드?
+                cirImg() {
+                    let CirImgOne = [];
+                    let CirImgTwo = [];
+                    let CirImgThr = [];
+
+                    if(this.circleFlag == 0){
+                        CirImgOne = this.pdImg1[0];
+                        CirImgTwo = this.pdImg1[1];
+                        CirImgThr = this.pdImg1[2];
+                        this.circleFlag = 1;
+                    }else{
+                        CirImgOne = this.pdImg2[0];
+                        CirImgTwo = this.pdImg2[1];
+                        CirImgThr = this.pdImg2[2];
+                        this.circleFlag = 0;
+                    }
+
+                    $("a").on("click", function () {
+                        // a태그를 가져오고 a가 클릭되면 하나씩 매칭해서 차례로 나오게 한다.
+                        switch (event.target.id) {
+                            //제품 이미지 밑의 작은 원 클릭시
+                            case "cirOne":
+                                $("#productImg").attr("src", CirImgOne);
+                                break
+                            case "cirTwo":
+                                $("#productImg").attr("src", CirImgTwo);
+                                break
+                            case "cirThr":
+                                $("#productImg").attr("src", CirImgThr);
+                                break
+                        }
+                    });
+                }
+
+                totalMakePd() {
+                    this.inputPDName();
+                    this.makeTwoList();
+                    this.commaSetting();
+                    this.imgMake();
+                    this.cirImg();
+                    this.selectTop();
+                    this.pdPriceSetting();
+                    this.firstSettingPrice();
+                    this.listClickEvent();
+                }
+
+                makeTwoList() {
+                    const name1 = this.name1;
+                    const name2 = this.name2;
+                    //제품 옵션 선택 목록 클릭시
+                    $("li").on("click", function (name1, name2) {
+                        switch (event.target.id) {
+                            //제품  종류선택시
+                            case "firstSelect":
+                                name1
+                                $("#productCount").val(1);
+                                $("#pdSelect").nextAll().css({
+                                    display: "none"
+                                });
+                                break
+                            case "secondSelect":
+                                $("#productCount").val(1);
+                                $("#pdSelect").nextAll().css({
+                                    display: "none"
+                                });
+                                break
+                        }
+                    });
+                }
+            }
+
+            const one = new PdMake("firstClass","amy", 45000 , "coral", 10000);
+            
+            $(window).one("load", () => {
+                one.totalMakePd();
+            });
+
+
+            // 제품 옵션 선택 토글
+            $("#pdSelect").on("click", function () {
+                $("#pdSelect").nextAll().toggle();
+            });
+
+
+
+            //이미지 밑 원 버튼 호버시 클래스 변경 이벤트
+            function circleOver(targetOver) {
+                $(targetOver).removeClass();
+                $(targetOver).addClass("fas fa-circle");
+            }
+
+            function circleLeave(targetLeave) {
+                $(targetLeave).removeClass();
+                $(targetLeave).addClass("far fa-circle");
+            }
+            
+            $(".circleBox i").hover(() => {
+                switch (event.target.id) {
+                    case "cirOne":
+                        circleOver("#cirOne")
+                        break
+                    case "cirTwo":
+                        circleOver("#cirTwo")
+                        break
+                    case "cirThr":
+                        circleOver("#cirThr")
+                        break
+                }
+            }, () => {
+                switch (event.target.id) {
+                    case "cirOne":
+                        circleLeave("#cirOne")
+                        break
+                    case "cirTwo":
+                        circleLeave("#cirTwo")
+                        break
+                    case "cirThr":
+                        circleLeave("#cirThr")
+                        break
+                }
+            });
+        </script>
+</body>
+
+</html>

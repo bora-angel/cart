@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./p1.css">
+    <link rel="shortcut icon" href="./img/shopping-cart.png">
+    <link rel="favicon" href="./img/shopping-cart.png">
+
+    <title>cart</title>
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <span class="topLogo">CART</span>
+        <p>본 페이지는 포트폴리오용 홈페이지입니다.</p>
+        <nav>
+            <a href="#" class="menuA" target="_self"><i class="fas fa-shopping-cart"></i></a>
+        </nav>
+    </header>
+    <section class="productArea">
+        <article class="imgBox">
+            <img src="./img/amy0.jpg" id="productImg" alt="product image">
+            <ul class="circleBox">
+                <a><i class="far fa-circle" id="cirOne"></i></a>
+                <a><i class="far fa-circle" id="cirTwo"></i></a>
+                <a><i class="far fa-circle" id="cirThr"></i></a>
+            </ul>
+        </article>
+        <article class="pdOption">
+            <h3>루쥬 코코</h3>
+            <p id="pdPrice">45,000<span>원</span></p>
+            <ul>
+                <button id="pdSelect">선택<i class="fas fa-angle-down"></i></button>
+                <a>
+                    <li id="firstSelect">486 - 아미</li>
+                </a>
+                <a>
+                    <li id="secondSelect">480 - 코랄 비브란트</li>
+                </a>
+            </ul>
+        </article>
+        <article class="pdCount">
+            <form method="post" action="#" id="cartForm">
+            <a><i id="countMinusBtn" class="fas fa-minus-circle"></i></a>
+            <input type="text" id="productCount" value="1">
+            <a><i id="countPlusBtn" class="fas fa-plus-circle"></i></a>
+        </article>
+        <article class="pdTotal">
+            <div>
+                <p class="chongP">합계&nbsp;</p>
+                <p id="totalPrice"><span>원</span></p>
+            </div>
+            <span>
+                <button id="inputBasket">장바구니</button>
+                <button id="buyProduct">구매하기</button>
+            </span>
+            </form>
+        </article>
+    </section>
+    <section class="modalBottom" id="modalBottom">
+        <section id="modalHeader" class="modalHeader">장바구니
+            <a href="#" id="timesBtn"><i class="fas fa-times"></i></a>
+        </section>
+        <section id="modalBody" class="modalBody">
+            <form method="post" action="#" class="modalForm">
+
+            </form>
+            </section>
+            <footer id="modalFooter" class="modalFooter">
+                <span class="footerTotalPrice">
+                    <span>합계 : </span>
+                    <span class="basketTotal"></span>
+                    <span>원</span>
+                </span>
+                <button id="basketProduct"> 구매하기</button>
+            </footer>
+        </form>
+    </section>
+    <section class="modalPofol">
+        <p> 본 페이지는 포트폴리오용으로 제작되었으므로</p>
+        <p> 해당 기능은 지원하지 않습니다.</p>
+        <button class="modalPofolClose">닫기</button>
+    </section>
+    <script type="text/javascript" src="./js/cart.js">
+        
+    </script>
+</body>
+
+</html>

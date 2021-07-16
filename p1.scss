@@ -1,0 +1,408 @@
+$black : rgb(50,50,50);
+$grey: rgb(199, 199, 199);
+@mixin btnNone{
+    background: inherit ; 
+    border:none; box-shadow:none; 
+    border-radius:0; padding:0; 
+    overflow:visible; cursor:pointer;
+}
+
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+*{
+    margin:0px; padding:0px; box-sizing:border-box;
+    color:$black;
+    font-family: 'RIDIBatang';
+}
+
+a:link{
+    text-decoration:none;
+    color:$black;
+}
+a:visited{
+    text-decoration:none;
+    color:$black;
+}
+a:active{
+    text-decoration:none;
+    color:$black;
+}
+a:hover{
+    text-decoration:none;
+    color:$black;
+    cursor:pointer;
+}
+
+body{
+    width:100%;
+    height:100%;
+    padding-top:100px;
+}
+header{
+    width:100%;
+    height:55px;
+    position:fixed;
+    top:0;
+    background-color: white;
+    border-bottom:1px solid $grey;
+    .topLogo{
+        display: inline-block;
+        width:300px;
+        height:50px;
+        line-height: 50px;
+        margin-left:10vw;
+        text-align: center;
+        margin-top:2px;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: default;
+    }
+    p{
+        position: absolute;
+        top:13px;
+        left:50%;
+        margin-left:-175px;
+    }
+    nav{
+        float:right;
+        margin-right:17vw;
+        a{
+            font-size:25px;
+            line-height:57px;
+            margin-right:30px;
+        }
+        i:hover{
+            color:gray;
+        }
+    }
+    
+}
+
+
+.productArea{
+    width:1200px;
+    height:600px;
+    margin:0 auto;
+    border:1px solid $grey;
+    padding-left:50px;
+    padding-right:50px;
+}
+
+.imgBox{
+    margin-top:50px;
+    width:400px;
+    height:500px;
+    float:left;
+    img{
+        margin-top:25px;
+        width:400px;
+        height:400px;
+        float:left;
+    }
+    ul{
+        float:left;
+        width:400px;
+        height:50px;
+        text-align: center;
+        margin-top:15px;
+
+        i{
+            font-size: 10px;
+            margin-right:10px;
+            color:$grey;
+        }
+    }
+    
+}
+
+.pdOption{
+    width:600px;
+    height:410px;
+    float:right;
+    text-align: left;
+    margin-top:35px;
+    font-size: 25px;
+    line-height: 50px;
+    padding-top:25px;
+    padding-left:25px;
+    ul{
+        width:550px;
+        height:180px;
+        margin-top:10px;
+        list-style-type:none;
+        text-align: center;
+        button{
+            float:left;
+            width:500px;
+            height:50px;
+            border: 1px solid $grey;
+            line-height: 50px;
+            font-size:20px;
+            cursor: pointer;
+            text-align:left;
+            padding-left:25px;
+            background-color: white;
+        }
+        i{
+            float: right;
+            margin-top:-1px;
+            padding-top:16px;
+            width:50px;
+            height:50px;
+        }
+        a{
+            display:none;
+        }
+        li{
+            width:500px;
+            height:50px;
+            line-height: 50px;
+            border: 1px solid $grey;
+            border-top:none;
+            font-size:20px;
+            float:left;
+        }
+    }
+}
+
+.pdCount{
+    width:200px;
+    text-align: center;
+    float:right;
+    margin-top:15px;
+    margin-right:400px;
+    a{
+        font-size:23px;
+        line-height: 25px;
+        margin-right:5px;
+        i{
+            color:darkgrey;
+        }
+    }
+    a:hover{
+        font-size:23px;
+        line-height: 25px;
+        margin-right:5px;
+        i{
+            color:gainsboro;
+        }
+    }
+    input{
+        width:50px;
+        font-size: 25px;
+        line-height: 25px;   
+        text-align: center;
+        margin-right:5px;     
+    }
+}
+
+.pdTotal{
+    float:right;
+    margin-top:-15px;
+    width:300px;
+    height:100px;
+    padding-right:30px;
+    text-align: right;
+    div{
+        margin-bottom:10px;
+        padding-left:20px;
+        float:right;
+    }
+    p{
+        margin-bottom:5px;
+        font-weight: bold;
+        font-size:25px;
+        float:left;
+    }
+    span{
+        float: right;
+        button{
+            @include btnNone();
+            border:1px solid $grey;
+            width:100px;
+            height:40px;
+            margin-left:25px;
+            float: left;
+        }
+        button:hover{
+            @include btnNone();
+            border:1px solid $grey;
+            width:100px;
+            height:40px;
+            margin-left:25px;
+            float: left;
+            background-color: rgb(231, 231, 231);
+        }
+    
+    }
+}
+
+.modalBottom{
+    position: fixed;
+    left:50%;
+    bottom: 0;
+    margin-left:-650px;
+    padding-top:20px;
+    width:1300px;
+    background-color: #fcfcfc;
+    height:300px;
+    border-top:1px solid $grey;
+    border-left:1px solid $grey;
+    border-right:1px solid $grey;
+    border-radius: 5px 5px 0px 0px;
+    .modalHeader{
+        width:1200px;
+        margin:0 auto;
+        text-align: center;
+        font-size: 30px;
+        padding-bottom:7px;
+        a{
+            margin-right:15px;
+            float:right;
+            color:$black;
+        } 
+        i:hover{
+            color:$grey; 
+        }   
+    }
+    .modalBody{
+        width:1200px;
+        height:160px;
+        margin:0 auto;
+        padding-top:15px;
+        overflow: auto;
+        line-height: 37px;
+    }
+    ul{
+        box-sizing: border-box;
+        border-bottom:1px solid $grey;
+        width:1200px;
+        height:40px;
+        margin:0 auto;
+        list-style-type:none;
+        li{
+            font-size: 25px;
+
+        }
+        i:hover{
+            color:$grey;
+        }
+        li:first-child{
+            width:620px;
+            float:left;
+            text-align: center;
+        }
+        li:nth-child(2){
+            width:230px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+
+            a{
+                float: left;
+                margin-left:32px;
+                margin-right: 30px;
+            }
+            input{
+                width:50px;
+                float: left;
+                margin-top:4px;
+                text-align: right;
+                font-size: 20px;
+            }
+        }
+        li:nth-child(3){
+            width:240px;
+            float: left;
+            text-align: right;
+        }
+        li:nth-child(4){
+            width:100px;
+            float: left;
+            line-height: 40px;
+            text-align:center;
+        }
+    }
+    .modalFooter{
+        width:1200px;
+        margin:0 auto;
+        color:$black;
+        .footerTotalPrice{
+            font-size: 22px;
+            font-weight: bold;
+            float:right;
+            margin-right:200px;
+            line-height: 40px;
+        }
+        button{
+            clear: both;
+            float: right;
+            @include btnNone();
+            border:1px solid $black;
+            width:100px;
+            height:40px;
+            margin-top:-40px;
+            margin-right:5px;
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        button:hover{
+            clear: both;
+            float: right;
+            @include btnNone();
+            border:1px solid $black;
+            width:100px;
+            height:40px;
+            margin-top:-40px;
+            margin-right:5px;
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: bold;
+            border-radius: 3px;
+            background-color: rgb(231, 231, 231);
+
+        }
+    
+    }
+}
+
+.modalPofol{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top:-60px;
+    margin-left:-200px;
+    width:400px;
+    height:120px;
+    border:1px solid $grey;
+    background-color:#fcfcfc;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    padding-top:15px;
+    button{
+        width:100px;
+        height:40px;
+        @include btnNone();
+        border:1px solid $grey;
+        border-radius: 3px;
+        margin-top:10px;
+    }
+    button:hover{
+        width:100px;
+        height:40px;
+        @include btnNone();
+        border:1px solid $grey;
+        border-radius: 3px;
+        background-color: rgb(231, 231, 231);
+        margin-top:10px;
+    }
+}
